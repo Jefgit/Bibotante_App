@@ -1,0 +1,135 @@
+:root {
+    --primary-color-blue: #0032A0;
+    --primary-color-red: #BF0D3E;
+    --primary-color-white: #FAFAFA;
+    --primary-color-yellow: #FED141;
+    --color-dgray:#212427;
+}
+
+*, ::before, ::after {
+    margin: 0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+  font-family: "Hind", serif;
+}
+
+header {
+    background-color: var(--primary-color-yellow);
+    padding: 1rem;
+    padding-left: 3rem;
+    width: 100%;
+    height: 10vh;
+    position:sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    object-fit: contain;
+    width: 5em;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h3, h2 {
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.6em;
+}
+
+.title {
+    border: 1px solid black;
+    padding: 2em;
+}
+
+.blue {
+    background-color: #9CC2C4;
+}
+
+.green {
+    background-color: #D9E7CF;
+}
+
+.selections {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 5em;
+    /* margin-top: 1em; */
+    border: 1px solid black;
+}
+
+.senators {
+    grid-template-rows: repeat(17,1fr);
+    grid-auto-flow: column;
+}
+
+.boardMember {
+    grid-template-rows: repeat(3,1fr);
+    grid-auto-flow: column;
+}
+
+.sb {
+    grid-template-rows: repeat(7,1fr);
+    grid-auto-flow: column;
+}
+
+.partyList {
+    grid-template-rows: repeat(52,1fr);
+    grid-auto-flow: column;
+}
+
+.cell {
+    font-weight: 600;
+    font-size: 1.3em;
+    display: flex;
+    gap:1em;
+    align-items: center;
+    align-self: center;
+    border: 1px solid black;
+    padding: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 4em auto 4em auto;
+    width: 60vw;
+    background-color: var(--primary-color-white);
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    width:100%;
+    height:clamp(2rem, 12vh, 8rem);
+    display:flex;
+    background-color:var(--color-dgray);
+}
+
+footer p {
+    width:100%;
+  font-size: clamp(1.6rem, 2vw, 2.5rem);
+  text-align:right;
+  color:var(--primary-color-white);
+  margin: auto 3rem;
+}

@@ -1,15 +1,17 @@
-export type Candidates = {
-    id: string,
-    position: string,
-    firstName: string,
-    lastName: string,
-    partyInitials: string
+export interface Candidates {
+    id: string;
+    position: string;
+    firstName: string;
+    lastName: string;
+    partyInitials: string;
 };
 
-export type PartyList = {
-    id: string,
-    name: string
+export interface PartyLists {
+    id: string;
+    name: string;
 };
+
+
 
 export interface NewVoterList {
     senators: string[];
