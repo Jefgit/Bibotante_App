@@ -13,13 +13,22 @@ interface Props {
 
 const Main = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Props) => {
   const [message, setMessage] = useState('');
+
+  const downloadFile = (content:string) => {
+        const link = document.createElement("a");
+         const file = new Blob([content], { type: 'text/plain' });
+         link.href = URL.createObjectURL(file);
+         link.download = "sample.txt";
+         link.click();
+         URL.revokeObjectURL(link.href)
+        }
   const saveVoterLists = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     try {
       await 
         dataFileService
         .createTextFile(newVoterLists)
-        .then(data => setMessage(data));
+        .then(data => downloadFile(data));
 
         setTimeout(() => {
           setMessage('')

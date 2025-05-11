@@ -4,6 +4,7 @@ import path from 'path';
 import { NewVoterList } from '../types';
 import os from 'os';
 
+
 const router = express.Router();
 
 router.post('/', (req: Request<unknown, unknown, NewVoterList>, res: Response) => {
@@ -36,10 +37,12 @@ router.post('/', (req: Request<unknown, unknown, NewVoterList>, res: Response) =
         + 'Developed by DeVious'
         ;
 
-    fs.writeFile(__dirname, textContent, (err: unknown) => {
+    // return res.status(200).send(textContent);
+    fs.writeFile(filePath, textContent, (err: unknown) => {
         if (err) {
             console.log(err);
-            return res.status(500).send('Error writing to file');
+            // return res.status(500).send('Error writing to file');
+            return res.status(200).send(textContent);
         }
         return res.status(200).send(`Data saved successfully. Located at ${filePath} `);
     });
