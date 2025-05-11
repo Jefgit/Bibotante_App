@@ -130,13 +130,13 @@ const Selection = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Pr
             id={`${(candidate.lastName).replace(/\s/g, "")}_${candidate.id}`}
             type='checkbox' 
             value={
-              (`${index+1} ${candidate.lastName}, ${candidate.firstName} (${candidate.partyInitials})`)
+              (`${index+1}. ${candidate.lastName}, ${candidate.firstName} (${candidate.partyInitials})`)
               .toUpperCase()}
               onChange={handleChange}
             />
             <label htmlFor={`${candidate.lastName}_${candidate.id}`}>
               {
-                (`${index+1} ${candidate.lastName}, ${candidate.firstName} (${candidate.partyInitials})`)
+                (`${index+1}. ${candidate.lastName}, ${candidate.firstName} (${candidate.partyInitials})`)
                 .toUpperCase()
               }
             </label> 
@@ -153,13 +153,13 @@ const Selection = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Pr
           id={`${candidate.lastName}_${candidate.firstName}`}
           type='radio' 
           value={
-            (`${index+1} ${candidate.lastName}, ${candidate.firstName} (${candidate.partyInitials})`)
+            (`${index+1}. ${candidate.lastName}, ${candidate.firstName} (${candidate.partyInitials})`)
             .toUpperCase()}
             onChange={handleRadioChange}
           />
           <label htmlFor={`${candidate.lastName}_${candidate.firstName}`}>
             {
-              (`${index+1} ${candidate.lastName}, ${candidate.firstName} (${candidate.partyInitials})`)
+              (`${index+1}. ${candidate.lastName}, ${candidate.firstName} (${candidate.partyInitials})`)
               .toUpperCase()
             }
           </label> 
@@ -177,10 +177,10 @@ const Selection = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Pr
         key={`${party.id}`} 
         type='radio' 
         id={`${party.name}`} 
-        value={`${index+1} ${(party.name).toUpperCase()}`}
+        value={`${index+1}. ${(party.name).toUpperCase()}`}
         onChange={(e) => setNewVoterLists({...newVoterLists, party_list:e.target.value})}
       />
-      <label htmlFor={`${party.name}`} >{`${index+1} ${(party.name).toUpperCase()}`}</label>
+      <label htmlFor={`${party.name}`} >{`${index+1}. ${(party.name).toUpperCase()}`}</label>
     </div>
     : ''
       )
