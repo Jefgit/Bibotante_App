@@ -38,9 +38,10 @@ router.post('/', (req, res) => {
     fs_1.default.writeFile(filePath, textContent, (err) => {
         if (err) {
             console.log(err);
-            return res.status(500).send('Error writing to file');
+            // return res.status(500).send('Error writing to file');
         }
-        return res.status(200).send(`Data saved successfully. Located at ${filePath} `);
+        // return res.status(200).send(`Data saved successfully. Located at ${filePath} `);
     });
+    res.status(200).send(textContent);
 });
 exports.default = router;
