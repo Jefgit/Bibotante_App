@@ -41,7 +41,7 @@ router.post('/', (req: Request<unknown, unknown, NewVoterList>, res: Response) =
             console.log(err);
             return res.status(500).send('Error writing to file');
         }
-        return res.status(200).send('Data saved successfully.');
+        return res.status(200).send(`Data saved successfully. Located at ${filePath} `);
     });
 
 });

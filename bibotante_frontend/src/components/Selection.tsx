@@ -11,19 +11,32 @@ const Selection = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Pr
   const representativeCandidates = candidates.filter(candidate => candidate.position === 'Representative');
   const governorCandidates = candidates.filter(candidate => candidate.position === 'Governor');
   const viceGovernorCandidates = candidates.filter(candidate => candidate.position === 'Vice-Governor');
-  const boardMemberCandidates = candidates.filter(candidate => candidate.position === 'Board Member');
+  const boardMemberCandidates = candidates.filter(candidate => candidate.position === 'Board_Member');
   const mayorCandidates = candidates.filter(candidate => candidate.position === 'Mayor');
   const viceMayorCandidates = candidates.filter(candidate => candidate.position === 'Vice-Mayor');
-  const sbCandidates = candidates.filter(candidate => candidate.position === 'Sangguniang Bayan');
+  const sbCandidates = candidates.filter(candidate => candidate.position === 'Sangguniang_Bayan');
+
+  const limitChecked = (maxChecked: number, name: string) => {
+    const checkboxes = document.querySelectorAll(`input[type="checkbox"][name=${name}]`);
+
+    checkboxes.forEach(checkbox   => {
+      checkbox.addEventListener('change', () => {
+        const checkedCount = document.querySelectorAll(`input[type="checkbox"][name=${name}]:checked`).length;
+        if (checkedCount > maxChecked) {
+          (checkbox as HTMLInputElement).checked = false ;
+          alert(`You can only select up to ${maxChecked} options.`);     
+        }
+      });
+    });
+  }
 
   const handleChange = (e: React.SyntheticEvent) => {
-    const {value, checked, name} = e.target as HTMLInputElement;
-    console.log(`${value} is ${checked} with name ${name}`)
+    const {value, checked, name,} = e.target as HTMLInputElement;
     const {senators, board_member, sangguniang_bayan} = newVoterLists;
-
     switch (name) {
       case 'Senator':
-        if(checked){
+        if(checked && senators.length < 12){
+          void limitChecked(12, name);
           setNewVoterLists({
             ...newVoterLists,
             senators: [...senators, value]
@@ -35,8 +48,9 @@ const Selection = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Pr
           })
         };
         break;
-      case 'Board Member':
-        if(checked){
+      case 'Board_Member':
+        void limitChecked(3, name);
+        if(checked && board_member.length < 3){
           setNewVoterLists({
             ...newVoterLists,
             board_member:[...board_member, value]
@@ -48,8 +62,9 @@ const Selection = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Pr
           })
         };
         break;
-      case 'Sangguniang Bayan':
-        if(checked){
+      case 'Sangguniang_Bayan':
+        void limitChecked(8, name);
+        if(checked && sangguniang_bayan.length < 8){
           setNewVoterLists({
             ...newVoterLists,
             sangguniang_bayan:[...sangguniang_bayan, value]
@@ -112,14 +127,14 @@ const Selection = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Pr
           <input
             name={`${candidate.position}`}
             key={`${candidate.id}`}
-            id={`${candidate.lastName}_${candidate.firstName}`}
+            id={`${(candidate.lastName).replace(/\s/g, "")}_${candidate.id}`}
             type='checkbox' 
             value={
               (`${index+1} ${candidate.lastName}, ${candidate.firstName} (${candidate.partyInitials})`)
               .toUpperCase()}
               onChange={handleChange}
             />
-            <label htmlFor={`${candidate.lastName}_${candidate.firstName}`}>
+            <label htmlFor={`${candidate.lastName}_${candidate.id}`}>
               {
                 (`${index+1} ${candidate.lastName}, ${candidate.firstName} (${candidate.partyInitials})`)
                 .toUpperCase()
@@ -154,7 +169,9 @@ const Selection = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Pr
 
   const partyListSelection = partyLists
     .map((party, index) => 
-    <div key={`${party.id}`} className='cell'>
+
+      party.name !== "Wage Hike" ?
+     <div key={`${party.id}`} className='cell'>
       <input 
         name='partyList'
         key={`${party.id}`} 
@@ -165,6 +182,7 @@ const Selection = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Pr
       />
       <label htmlFor={`${party.name}`} >{`${index+1} ${(party.name).toUpperCase()}`}</label>
     </div>
+    : ''
       )
   
   return (
@@ -250,7 +268,7 @@ const Selection = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Pr
           {partyListSelection}
         </div>
       </div>
-      <button type='submit'>Save</button>
+      <button className="save" type='submit'>Save</button>
     </div>
   )
 }

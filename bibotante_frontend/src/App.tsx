@@ -38,6 +38,8 @@ const App = () => {
     void fetchPartyLists();
   },[])
 
+  console.log(newVoterLists);
+
   return (
     <>
       <Header/>
