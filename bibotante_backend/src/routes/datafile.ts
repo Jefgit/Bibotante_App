@@ -36,7 +36,7 @@ router.post('/', (req: Request<unknown, unknown, NewVoterList>, res: Response) =
         + 'Developed by DeVious'
         ;
 
-    fs.writeFile(filePath, textContent, (err: unknown) => {
+    fs.writeFile(__dirname, textContent, (err: unknown) => {
         if (err) {
             console.log(err);
             return res.status(500).send('Error writing to file');
