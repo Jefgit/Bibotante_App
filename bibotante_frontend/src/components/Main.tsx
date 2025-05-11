@@ -18,7 +18,7 @@ const Main = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Props) 
         const link = document.createElement("a");
          const file = new Blob([content], { type: 'text/plain' });
          link.href = URL.createObjectURL(file);
-         link.download = "sample.txt";
+         link.download = "kodigo.txt";
          link.click();
          URL.revokeObjectURL(link.href)
         }

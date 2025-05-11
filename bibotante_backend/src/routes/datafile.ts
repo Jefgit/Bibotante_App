@@ -37,15 +37,15 @@ router.post('/', (req: Request<unknown, unknown, NewVoterList>, res: Response) =
         + 'Developed by DeVious'
         ;
 
-    // return res.status(200).send(textContent);
     fs.writeFile(filePath, textContent, (err: unknown) => {
         if (err) {
             console.log(err);
             // return res.status(500).send('Error writing to file');
-            return res.status(200).send(textContent);
         }
-        return res.status(200).send(`Data saved successfully. Located at ${filePath} `);
+        // return res.status(200).send(`Data saved successfully. Located at ${filePath} `);
     });
+
+    res.status(200).send(textContent);
 
 });
 
