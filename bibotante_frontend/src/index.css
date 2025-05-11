@@ -65,6 +65,8 @@ h3 {
 form {
     display: flex;
     justify-content: center;
+    padding-left:3em;
+    padding-right: 3em;
 }
 
 .blue {
@@ -112,7 +114,7 @@ form {
     align-items: center;
     align-self: center;
     border: 1px solid black;
-    padding: 5px;
+    padding: clamp(1px, 3vw, 5px);
     height: 100%;
     width: 100%;
     text-align: left;
@@ -132,7 +134,7 @@ main {
     flex-direction: column;
     justify-content: center;
     margin: 3em auto 3em auto;
-    padding: 3vw;
+    padding: clamp(3em, 3vw, 5em);
     background-color: var(--primary-color-white);
 }
 
