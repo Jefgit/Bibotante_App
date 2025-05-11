@@ -6,9 +6,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
     "build": "npm install && tsc",
-    "dev": "vite",
+    "dev": "ts-node-dev src/index.ts",
     "lint": "eslint .",
-    "start": "vite"
+    "start": "node ./build/src/index.js"
   },
   "author": "DeVious",
   "license": "ISC",
