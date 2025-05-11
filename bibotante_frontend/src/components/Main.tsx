@@ -28,7 +28,9 @@ const Main = ({candidates, partyLists, setNewVoterLists, newVoterLists}: Props) 
       await 
         dataFileService
         .createTextFile(newVoterLists)
-        .then(data => downloadFile(data));
+        .then(data => {downloadFile(data)
+          console.log(data)
+        });
 
         setTimeout(() => {
           setMessage('')
